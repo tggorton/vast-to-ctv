@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAST to L-Bar Video Converter</title>
+    <link rel="stylesheet" href="vast-to-ctv/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="vast-to-ctv/static/images/kerv-logo.png" alt="Kerv Logo" class="logo-image">
+            <h1>VAST to L-Bar Converter</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <form method="POST" enctype="multipart/form-data" class="vast-form">
+            <div class="form-group">
+                <label for="vast_input">VAST URL or XML Content:</label>
+                <textarea name="vast_input" id="vast_input" rows="10" placeholder="Paste VAST XML content here, or provide a URL to a VAST XML file (e.g., https://.../vast.xml).
+The VAST tag should contain an MP4 MediaFile and a ClickThrough URL."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="vast_file">Or Upload VAST File (.xml or .txt):</label>
+                <input type="file" name="vast_file" id="vast_file" accept=".xml,.txt">
+            </div>
+            <button type="submit" class="btn-submit">Convert VAST</button>
+        </form>
+
+        
+        <section class="results-section">
+
+            
+
+            
+
+            
+            <div class="result-item extracted-info">
+                <h3>Extracted Information:</h3>
+                <p><strong>Original AdTitle:</strong> N/A</p>
+                <p><strong>Extracted Brand Name:</strong> N/A</p>
+                <p><strong>Video MediaFile URL:</strong> 
+                    
+                        N/A
+                    
+                </p>
+                <p><strong>Raw ClickThrough URL (for QR):</strong> 
+                    
+                        N/A
+                    
+                </p>
+                <p><strong>Final Resolved URL (for display text):</strong> 
+                    
+                        N/A (or same as raw)
+                    
+                </p>
+            </div>
+
+            
+            <div class="result-item qr-code-container">
+                <h3>Generated QR Code:</h3>
+                
+                    
+                    <p>QR code could not be generated (likely due to missing ClickThrough URL).</p>
+                
+            </div>
+            
+            
+            
+
+            
+
+        </section> 
+    </main>
+
+    <footer>
+        <p>KERV© Vast Conversion tool | 2025</p>
+    </footer>
+
+    
+    <script>
+        // ... existing code ...
+    </script>
+</body>
+</html> 

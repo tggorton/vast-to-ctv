@@ -32,7 +32,12 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-liberation
+
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -45,10 +50,11 @@ jobs:
           echo "Current directory contents:"
           ls -R
 
-      - name: Create build directory
+      - name: Create build directory structure
         run: |
-          mkdir -p build
           mkdir -p build/static
+          mkdir -p build/generated
+          mkdir -p build/uploads
           echo "Build directory created:"
           ls -la build/
 

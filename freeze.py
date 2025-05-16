@@ -1,12 +1,21 @@
 from flask_frozen import Freezer
 from app import app
 import os
+import shutil
 
 freezer = Freezer(app)
 app.config['FREEZER_DESTINATION'] = 'build'
 app.config['FREEZER_RELATIVE_URLS'] = True
 app.config['FREEZER_BASE_URL'] = 'https://tggorton.github.io/vast-to-ctv/'
-app.config['FREEZER_STATIC_IGNORE'] = ['*.scss']
+app.config['FREEZER_STATIC_IGNORE'] = ['*.scss', '.DS_Store']
+
+# Ensure build directory exists
+if not os.path.exists('build'):
+    os.makedirs('build')
+
+# Ensure static directory exists in build
+if not os.path.exists('build/static'):
+    os.makedirs('build/static')
 
 @freezer.register_generator
 def serve_static():
@@ -27,4 +36,15 @@ def serve_generated():
     pass
 
 if __name__ == '__main__':
+    # Clean build directory
+    if os.path.exists('build'):
+        for item in os.listdir('build'):
+            if item != 'static':  # Preserve static directory
+                item_path = os.path.join('build', item)
+                if os.path.isfile(item_path):
+                    os.unlink(item_path)
+                elif os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+    
+    # Run freezer
     freezer.freeze() 
